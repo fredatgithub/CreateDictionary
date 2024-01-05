@@ -63,6 +63,12 @@
       this.buttonAdd = new System.Windows.Forms.Button();
       this.listBoxWords = new System.Windows.Forms.ListBox();
       this.labelCountWords = new System.Windows.Forms.Label();
+      this.buttonDelete = new System.Windows.Forms.Button();
+      this.buttonLoad = new System.Windows.Forms.Button();
+      this.listBoxGeneralDico = new System.Windows.Forms.ListBox();
+      this.labelGeneralCount = new System.Windows.Forms.Label();
+      this.buttonSave = new System.Windows.Forms.Button();
+      this.buttonCopy = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -75,7 +81,8 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1078, 24);
+      this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+      this.menuStrip1.Size = new System.Drawing.Size(1617, 25);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -93,7 +100,7 @@
             this.toolStripSeparator2,
             this.quitterToolStripMenuItem});
       this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
       this.fichierToolStripMenuItem.Text = "&Fichier";
       // 
       // nouveauToolStripMenuItem
@@ -180,7 +187,7 @@
             this.toolStripSeparator4,
             this.sélectionnertoutToolStripMenuItem});
       this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
-      this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+      this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 19);
       this.editionToolStripMenuItem.Text = "&Edition";
       // 
       // annulerToolStripMenuItem
@@ -246,7 +253,7 @@
             this.personnaliserToolStripMenuItem,
             this.optionsToolStripMenuItem});
       this.outilsToolStripMenuItem.Name = "outilsToolStripMenuItem";
-      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(50, 19);
       this.outilsToolStripMenuItem.Text = "&Outils";
       // 
       // personnaliserToolStripMenuItem
@@ -270,7 +277,7 @@
             this.toolStripSeparator5,
             this.àproposdeToolStripMenuItem});
       this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-      this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+      this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
       this.aideToolStripMenuItem.Text = "&Aide";
       // 
       // sommaireToolStripMenuItem
@@ -304,50 +311,129 @@
       // 
       // textBoxSource
       // 
-      this.textBoxSource.Location = new System.Drawing.Point(40, 74);
+      this.textBoxSource.Location = new System.Drawing.Point(60, 114);
+      this.textBoxSource.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxSource.Multiline = true;
       this.textBoxSource.Name = "textBoxSource";
-      this.textBoxSource.Size = new System.Drawing.Size(327, 502);
+      this.textBoxSource.Size = new System.Drawing.Size(325, 770);
       this.textBoxSource.TabIndex = 1;
       // 
       // buttonAdd
       // 
-      this.buttonAdd.Location = new System.Drawing.Point(390, 74);
+      this.buttonAdd.Location = new System.Drawing.Point(425, 114);
+      this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonAdd.Name = "buttonAdd";
-      this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+      this.buttonAdd.Size = new System.Drawing.Size(124, 35);
       this.buttonAdd.TabIndex = 2;
-      this.buttonAdd.Text = "Search";
+      this.buttonAdd.Text = "List words";
       this.buttonAdd.UseVisualStyleBackColor = true;
       this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
       // 
       // listBoxWords
       // 
       this.listBoxWords.FormattingEnabled = true;
-      this.listBoxWords.Location = new System.Drawing.Point(494, 74);
+      this.listBoxWords.ItemHeight = 20;
+      this.listBoxWords.Location = new System.Drawing.Point(581, 114);
+      this.listBoxWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxWords.Name = "listBoxWords";
-      this.listBoxWords.Size = new System.Drawing.Size(221, 498);
+      this.listBoxWords.Size = new System.Drawing.Size(231, 764);
+      this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
       // 
       // labelCountWords
       // 
       this.labelCountWords.AutoSize = true;
-      this.labelCountWords.Location = new System.Drawing.Point(494, 586);
+      this.labelCountWords.Location = new System.Drawing.Point(577, 902);
+      this.labelCountWords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.labelCountWords.Name = "labelCountWords";
-      this.labelCountWords.Size = new System.Drawing.Size(47, 13);
+      this.labelCountWords.Size = new System.Drawing.Size(69, 20);
       this.labelCountWords.TabIndex = 4;
       this.labelCountWords.Text = "Count: 0";
       // 
+      // buttonDelete
+      // 
+      this.buttonDelete.Location = new System.Drawing.Point(425, 159);
+      this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonDelete.Name = "buttonDelete";
+      this.buttonDelete.Size = new System.Drawing.Size(124, 35);
+      this.buttonDelete.TabIndex = 5;
+      this.buttonDelete.Text = "Delete word";
+      this.buttonDelete.UseVisualStyleBackColor = true;
+      this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+      // 
+      // buttonLoad
+      // 
+      this.buttonLoad.Location = new System.Drawing.Point(822, 110);
+      this.buttonLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonLoad.Name = "buttonLoad";
+      this.buttonLoad.Size = new System.Drawing.Size(124, 35);
+      this.buttonLoad.TabIndex = 6;
+      this.buttonLoad.Text = "Load";
+      this.buttonLoad.UseVisualStyleBackColor = true;
+      this.buttonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
+      // 
+      // listBoxGeneralDico
+      // 
+      this.listBoxGeneralDico.FormattingEnabled = true;
+      this.listBoxGeneralDico.ItemHeight = 20;
+      this.listBoxGeneralDico.Location = new System.Drawing.Point(955, 114);
+      this.listBoxGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.listBoxGeneralDico.Name = "listBoxGeneralDico";
+      this.listBoxGeneralDico.Size = new System.Drawing.Size(231, 764);
+      this.listBoxGeneralDico.Sorted = true;
+      this.listBoxGeneralDico.TabIndex = 7;
+      // 
+      // labelGeneralCount
+      // 
+      this.labelGeneralCount.AutoSize = true;
+      this.labelGeneralCount.Location = new System.Drawing.Point(865, 902);
+      this.labelGeneralCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.labelGeneralCount.Name = "labelGeneralCount";
+      this.labelGeneralCount.Size = new System.Drawing.Size(69, 20);
+      this.labelGeneralCount.TabIndex = 8;
+      this.labelGeneralCount.Text = "Count: 0";
+      // 
+      // buttonSave
+      // 
+      this.buttonSave.Location = new System.Drawing.Point(822, 218);
+      this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonSave.Name = "buttonSave";
+      this.buttonSave.Size = new System.Drawing.Size(124, 35);
+      this.buttonSave.TabIndex = 9;
+      this.buttonSave.Text = "Save";
+      this.buttonSave.UseVisualStyleBackColor = true;
+      this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+      // 
+      // buttonCopy
+      // 
+      this.buttonCopy.Location = new System.Drawing.Point(822, 159);
+      this.buttonCopy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonCopy.Name = "buttonCopy";
+      this.buttonCopy.Size = new System.Drawing.Size(124, 35);
+      this.buttonCopy.TabIndex = 10;
+      this.buttonCopy.Text = "Copy all words";
+      this.buttonCopy.UseVisualStyleBackColor = true;
+      this.buttonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
+      // 
       // FormMain
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1078, 611);
+      this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonCopy);
+      this.Controls.Add(this.buttonSave);
+      this.Controls.Add(this.labelGeneralCount);
+      this.Controls.Add(this.listBoxGeneralDico);
+      this.Controls.Add(this.buttonLoad);
+      this.Controls.Add(this.buttonDelete);
       this.Controls.Add(this.labelCountWords);
       this.Controls.Add(this.listBoxWords);
       this.Controls.Add(this.buttonAdd);
       this.Controls.Add(this.textBoxSource);
       this.Controls.Add(this.menuStrip1);
+      this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.Name = "FormMain";
       this.Text = "Create Dictionary";
       this.menuStrip1.ResumeLayout(false);
@@ -393,6 +479,12 @@
     private System.Windows.Forms.Button buttonAdd;
     private System.Windows.Forms.ListBox listBoxWords;
     private System.Windows.Forms.Label labelCountWords;
+    private System.Windows.Forms.Button buttonDelete;
+    private System.Windows.Forms.Button buttonLoad;
+    private System.Windows.Forms.ListBox listBoxGeneralDico;
+    private System.Windows.Forms.Label labelGeneralCount;
+    private System.Windows.Forms.Button buttonSave;
+    private System.Windows.Forms.Button buttonCopy;
   }
 }
 
