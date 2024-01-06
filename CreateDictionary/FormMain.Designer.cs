@@ -71,6 +71,7 @@
       this.buttonCopy = new System.Windows.Forms.Button();
       this.buttonRemoveDuplicate = new System.Windows.Forms.Button();
       this.buttonDeleteWordsGeneralDico = new System.Windows.Forms.Button();
+      this.buttonRemoveDuplicateGeneralDico = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -382,7 +383,6 @@
       this.listBoxGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxGeneralDico.Name = "listBoxGeneralDico";
       this.listBoxGeneralDico.Size = new System.Drawing.Size(231, 764);
-      this.listBoxGeneralDico.Sorted = true;
       this.listBoxGeneralDico.TabIndex = 7;
       // 
       // labelGeneralCount
@@ -439,11 +439,23 @@
       this.buttonDeleteWordsGeneralDico.UseVisualStyleBackColor = true;
       this.buttonDeleteWordsGeneralDico.Click += new System.EventHandler(this.ButtonDeleteWordsGeneralDico_Click);
       // 
+      // buttonRemoveDuplicateGeneralDico
+      // 
+      this.buttonRemoveDuplicateGeneralDico.Location = new System.Drawing.Point(820, 308);
+      this.buttonRemoveDuplicateGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonRemoveDuplicateGeneralDico.Name = "buttonRemoveDuplicateGeneralDico";
+      this.buttonRemoveDuplicateGeneralDico.Size = new System.Drawing.Size(124, 55);
+      this.buttonRemoveDuplicateGeneralDico.TabIndex = 13;
+      this.buttonRemoveDuplicateGeneralDico.Text = "Remove duplicate";
+      this.buttonRemoveDuplicateGeneralDico.UseVisualStyleBackColor = true;
+      this.buttonRemoveDuplicateGeneralDico.Click += new System.EventHandler(this.ButtonRemoveDuplicateGeneralDico_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonRemoveDuplicateGeneralDico);
       this.Controls.Add(this.buttonDeleteWordsGeneralDico);
       this.Controls.Add(this.buttonRemoveDuplicate);
       this.Controls.Add(this.buttonCopy);
@@ -515,6 +527,7 @@
     private System.Windows.Forms.Button buttonCopy;
     private System.Windows.Forms.Button buttonRemoveDuplicate;
     private System.Windows.Forms.Button buttonDeleteWordsGeneralDico;
+    private System.Windows.Forms.Button buttonRemoveDuplicateGeneralDico;
   }
 }
 

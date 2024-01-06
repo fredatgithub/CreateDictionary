@@ -84,7 +84,13 @@ namespace CreateDictionary
     private void ButtonLoad_Click(object sender, EventArgs e)
     {
       listBoxGeneralDico.Items.Clear();
-      listBoxGeneralDico.Items.AddRange(ReadFile("Dictionaries\\French.txt"));
+      //listBoxGeneralDico.Items.AddRange(ReadFile("Dictionaries\\French.txt"));
+      var allWords = ReadFile("Dictionaries\\French.txt");
+      foreach (string word in allWords)
+      {
+        listBoxGeneralDico.Items.Add(word);
+      }
+
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
 
@@ -118,13 +124,14 @@ namespace CreateDictionary
           listOfWords.Add(word);
         }
 
+        listOfWords.Sort();
         if (WriteFile("Dictionaries\\French.txt", listOfWords))
         {
-          MessageBox.Show("sauvegarde ok");
+          MessageBox.Show("Sauvegarde ok");
         }
         else
         {
-          MessageBox.Show("sauvegarde ko");
+          MessageBox.Show("Sauvegarde ko");
         }
       }
     }
@@ -378,6 +385,26 @@ namespace CreateDictionary
         listBoxGeneralDico.Items.RemoveAt(listBoxGeneralDico.SelectedIndex);
         CountWords(labelGeneralCount, listBoxGeneralDico);
       }
+    }
+
+    private void ButtonRemoveDuplicateGeneralDico_Click(object sender, EventArgs e)
+    {
+      var dicoWords = new Dictionary<string, string>();
+      foreach (string word in listBoxGeneralDico.Items)
+      {
+        if (!dicoWords.ContainsKey(word))
+        {
+          dicoWords.Add(word, word);
+        }
+      }
+
+      listBoxGeneralDico.Items.Clear();
+      foreach (var word in dicoWords)
+      {
+        listBoxGeneralDico.Items.Add(word.Key);
+      }
+
+      CountWords(labelGeneralCount, listBoxGeneralDico);
     }
   }
 }
