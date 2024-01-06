@@ -69,7 +69,7 @@ namespace CreateDictionary
 
     private string RemovePunctuation(string word)
     {
-      return word.ToLower().Trim().Replace(".", "").Replace(",", "");
+      return word.ToLower().Trim().Replace(".", "").Replace(",", "").Trim('"');
     }
 
     private void ButtonDelete_Click(object sender, EventArgs e)
