@@ -77,6 +77,7 @@ namespace CreateDictionary
       if (listBoxWords.SelectedIndex != -1)
       {
         listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
+        CountWords(labelCountWords, listBoxWords);
       }
     }
 
@@ -348,6 +349,35 @@ namespace CreateDictionary
       }
 
       sw.Close();
+    }
+
+    private void ButtonRemoveDuplicate_Click(object sender, EventArgs e)
+    {
+      var dicoWords = new Dictionary<string, string>();
+      foreach (string word in listBoxWords.Items)
+      {
+        if (!dicoWords.ContainsKey(word))
+        {
+          dicoWords.Add(word, word);
+        }
+      }
+
+      listBoxWords.Items.Clear();
+      foreach (var word in dicoWords)
+      {
+        listBoxWords.Items.Add(word.Key);
+      }
+
+      CountWords(labelCountWords, listBoxWords);
+    }
+
+    private void ButtonDeleteWordsGeneralDico_Click(object sender, EventArgs e)
+    {
+      if (listBoxGeneralDico.SelectedIndex != -1)
+      {
+        listBoxGeneralDico.Items.RemoveAt(listBoxGeneralDico.SelectedIndex);
+        CountWords(labelGeneralCount, listBoxGeneralDico);
+      }
     }
   }
 }

@@ -69,6 +69,8 @@
       this.labelGeneralCount = new System.Windows.Forms.Label();
       this.buttonSave = new System.Windows.Forms.Button();
       this.buttonCopy = new System.Windows.Forms.Button();
+      this.buttonRemoveDuplicate = new System.Windows.Forms.Button();
+      this.buttonDeleteWordsGeneralDico = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -415,11 +417,35 @@
       this.buttonCopy.UseVisualStyleBackColor = true;
       this.buttonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
       // 
+      // buttonRemoveDuplicate
+      // 
+      this.buttonRemoveDuplicate.Location = new System.Drawing.Point(425, 218);
+      this.buttonRemoveDuplicate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonRemoveDuplicate.Name = "buttonRemoveDuplicate";
+      this.buttonRemoveDuplicate.Size = new System.Drawing.Size(124, 55);
+      this.buttonRemoveDuplicate.TabIndex = 11;
+      this.buttonRemoveDuplicate.Text = "Remove duplicate";
+      this.buttonRemoveDuplicate.UseVisualStyleBackColor = true;
+      this.buttonRemoveDuplicate.Click += new System.EventHandler(this.ButtonRemoveDuplicate_Click);
+      // 
+      // buttonDeleteWordsGeneralDico
+      // 
+      this.buttonDeleteWordsGeneralDico.Location = new System.Drawing.Point(820, 263);
+      this.buttonDeleteWordsGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonDeleteWordsGeneralDico.Name = "buttonDeleteWordsGeneralDico";
+      this.buttonDeleteWordsGeneralDico.Size = new System.Drawing.Size(124, 35);
+      this.buttonDeleteWordsGeneralDico.TabIndex = 12;
+      this.buttonDeleteWordsGeneralDico.Text = "Delete word";
+      this.buttonDeleteWordsGeneralDico.UseVisualStyleBackColor = true;
+      this.buttonDeleteWordsGeneralDico.Click += new System.EventHandler(this.ButtonDeleteWordsGeneralDico_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonDeleteWordsGeneralDico);
+      this.Controls.Add(this.buttonRemoveDuplicate);
       this.Controls.Add(this.buttonCopy);
       this.Controls.Add(this.buttonSave);
       this.Controls.Add(this.labelGeneralCount);
@@ -487,6 +513,8 @@
     private System.Windows.Forms.Label labelGeneralCount;
     private System.Windows.Forms.Button buttonSave;
     private System.Windows.Forms.Button buttonCopy;
+    private System.Windows.Forms.Button buttonRemoveDuplicate;
+    private System.Windows.Forms.Button buttonDeleteWordsGeneralDico;
   }
 }
 
