@@ -141,7 +141,7 @@ namespace CreateDictionary
       bool result = false;
       try
       {
-        using (StreamWriter sw = new StreamWriter(filename, true))
+        using (StreamWriter sw = new StreamWriter(filename, false))
         {
           foreach (var word in items)
           {
@@ -178,6 +178,16 @@ namespace CreateDictionary
       DisplayTitle();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
+      LoadLanguageDictionaries();
+    }
+
+    private void LoadLanguageDictionaries()
+    {
+      comboBoxLanguages.Items.Clear();
+      comboBoxLanguages.Items.Add("French");
+      comboBoxLanguages.SelectedIndex = 0;
+      comboBoxLanguages.Items.Add("English");
+      comboBoxLanguages.Items.Add("Latin");
     }
 
     private void SaveWindowValue()
@@ -405,6 +415,11 @@ namespace CreateDictionary
       }
 
       CountWords(labelGeneralCount, listBoxGeneralDico);
+    }
+
+    private void ComboBoxLanguages_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

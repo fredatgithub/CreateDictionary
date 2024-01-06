@@ -72,6 +72,9 @@
       this.buttonRemoveDuplicate = new System.Windows.Forms.Button();
       this.buttonDeleteWordsGeneralDico = new System.Windows.Forms.Button();
       this.buttonRemoveDuplicateGeneralDico = new System.Windows.Forms.Button();
+      this.labelPasteYourText = new System.Windows.Forms.Label();
+      this.labelListOfWords = new System.Windows.Forms.Label();
+      this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -450,11 +453,41 @@
       this.buttonRemoveDuplicateGeneralDico.UseVisualStyleBackColor = true;
       this.buttonRemoveDuplicateGeneralDico.Click += new System.EventHandler(this.ButtonRemoveDuplicateGeneralDico_Click);
       // 
+      // labelPasteYourText
+      // 
+      this.labelPasteYourText.AutoSize = true;
+      this.labelPasteYourText.Location = new System.Drawing.Point(56, 75);
+      this.labelPasteYourText.Name = "labelPasteYourText";
+      this.labelPasteYourText.Size = new System.Drawing.Size(154, 20);
+      this.labelPasteYourText.TabIndex = 14;
+      this.labelPasteYourText.Text = "Paste your text here:";
+      // 
+      // labelListOfWords
+      // 
+      this.labelListOfWords.AutoSize = true;
+      this.labelListOfWords.Location = new System.Drawing.Point(577, 75);
+      this.labelListOfWords.Name = "labelListOfWords";
+      this.labelListOfWords.Size = new System.Drawing.Size(172, 20);
+      this.labelListOfWords.TabIndex = 15;
+      this.labelListOfWords.Text = "List of words extracted:";
+      // 
+      // comboBoxLanguages
+      // 
+      this.comboBoxLanguages.FormattingEnabled = true;
+      this.comboBoxLanguages.Location = new System.Drawing.Point(955, 75);
+      this.comboBoxLanguages.Name = "comboBoxLanguages";
+      this.comboBoxLanguages.Size = new System.Drawing.Size(231, 28);
+      this.comboBoxLanguages.TabIndex = 16;
+      this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguages_SelectedIndexChanged);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.comboBoxLanguages);
+      this.Controls.Add(this.labelListOfWords);
+      this.Controls.Add(this.labelPasteYourText);
       this.Controls.Add(this.buttonRemoveDuplicateGeneralDico);
       this.Controls.Add(this.buttonDeleteWordsGeneralDico);
       this.Controls.Add(this.buttonRemoveDuplicate);
@@ -528,6 +561,9 @@
     private System.Windows.Forms.Button buttonRemoveDuplicate;
     private System.Windows.Forms.Button buttonDeleteWordsGeneralDico;
     private System.Windows.Forms.Button buttonRemoveDuplicateGeneralDico;
+    private System.Windows.Forms.Label labelPasteYourText;
+    private System.Windows.Forms.Label labelListOfWords;
+    private System.Windows.Forms.ComboBox comboBoxLanguages;
   }
 }
 
