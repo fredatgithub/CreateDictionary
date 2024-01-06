@@ -343,6 +343,7 @@
       this.listBoxWords.Location = new System.Drawing.Point(581, 114);
       this.listBoxWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxWords.Name = "listBoxWords";
+      this.listBoxWords.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
       this.listBoxWords.Size = new System.Drawing.Size(231, 764);
       this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
