@@ -75,6 +75,7 @@
       this.labelPasteYourText = new System.Windows.Forms.Label();
       this.labelListOfWords = new System.Windows.Forms.Label();
       this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
+      this.labelListOfDictionaries = new System.Windows.Forms.Label();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -480,11 +481,21 @@
       this.comboBoxLanguages.TabIndex = 16;
       this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguages_SelectedIndexChanged);
       // 
+      // labelListOfDictionaries
+      // 
+      this.labelListOfDictionaries.AutoSize = true;
+      this.labelListOfDictionaries.Location = new System.Drawing.Point(951, 52);
+      this.labelListOfDictionaries.Name = "labelListOfDictionaries";
+      this.labelListOfDictionaries.Size = new System.Drawing.Size(140, 20);
+      this.labelListOfDictionaries.TabIndex = 17;
+      this.labelListOfDictionaries.Text = "List of dictionaries:";
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.labelListOfDictionaries);
       this.Controls.Add(this.comboBoxLanguages);
       this.Controls.Add(this.labelListOfWords);
       this.Controls.Add(this.labelPasteYourText);
@@ -564,6 +575,7 @@
     private System.Windows.Forms.Label labelPasteYourText;
     private System.Windows.Forms.Label labelListOfWords;
     private System.Windows.Forms.ComboBox comboBoxLanguages;
+    private System.Windows.Forms.Label labelListOfDictionaries;
   }
 }
 
