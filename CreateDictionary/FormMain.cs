@@ -60,6 +60,7 @@ namespace CreateDictionary
       }
 
       CountWords(labelCountWords, listBoxWords);
+      ListBoxWords_SelectedIndexChanged(sender, e);
     }
 
     private void CountWords(Label theLabel, ListBox theListBox)
@@ -179,6 +180,7 @@ namespace CreateDictionary
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
       LoadLanguageDictionaries();
+      ListBoxWords_SelectedIndexChanged(sender, e);
     }
 
     private void LoadLanguageDictionaries()
@@ -420,6 +422,32 @@ namespace CreateDictionary
     private void ComboBoxLanguages_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void ButtonCountNewWords_Click(object sender, EventArgs e)
+    {
+      int newWords = 0;
+      foreach (var item in listBoxWords.Items)
+      {
+        if (!listBoxGeneralDico.Items.Contains(item.ToString()))
+        {
+          newWords++;
+        }
+      }
+
+      if (newWords == 0)
+      {
+        MessageBox.Show("There is no new word to be added.");
+      }
+      else
+      {
+        MessageBox.Show($"There is {newWords} new words to be added to the general list.");
+      }
+    }
+
+    private void ListBoxWords_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      buttonCountNewWords.Enabled = listBoxWords.Items.Count > 0;
     }
   }
 }

@@ -76,6 +76,7 @@
       this.labelListOfWords = new System.Windows.Forms.Label();
       this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
       this.labelListOfDictionaries = new System.Windows.Forms.Label();
+      this.buttonCountNewWords = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -347,6 +348,7 @@
       this.listBoxWords.Size = new System.Drawing.Size(231, 764);
       this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
+      this.listBoxWords.SelectedIndexChanged += new System.EventHandler(this.ListBoxWords_SelectedIndexChanged);
       // 
       // labelCountWords
       // 
@@ -402,7 +404,7 @@
       // 
       // buttonSave
       // 
-      this.buttonSave.Location = new System.Drawing.Point(822, 218);
+      this.buttonSave.Location = new System.Drawing.Point(822, 258);
       this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonSave.Name = "buttonSave";
       this.buttonSave.Size = new System.Drawing.Size(124, 35);
@@ -413,7 +415,7 @@
       // 
       // buttonCopy
       // 
-      this.buttonCopy.Location = new System.Drawing.Point(822, 159);
+      this.buttonCopy.Location = new System.Drawing.Point(822, 199);
       this.buttonCopy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonCopy.Name = "buttonCopy";
       this.buttonCopy.Size = new System.Drawing.Size(124, 35);
@@ -435,7 +437,7 @@
       // 
       // buttonDeleteWordsGeneralDico
       // 
-      this.buttonDeleteWordsGeneralDico.Location = new System.Drawing.Point(820, 263);
+      this.buttonDeleteWordsGeneralDico.Location = new System.Drawing.Point(820, 303);
       this.buttonDeleteWordsGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonDeleteWordsGeneralDico.Name = "buttonDeleteWordsGeneralDico";
       this.buttonDeleteWordsGeneralDico.Size = new System.Drawing.Size(124, 35);
@@ -446,7 +448,7 @@
       // 
       // buttonRemoveDuplicateGeneralDico
       // 
-      this.buttonRemoveDuplicateGeneralDico.Location = new System.Drawing.Point(820, 308);
+      this.buttonRemoveDuplicateGeneralDico.Location = new System.Drawing.Point(820, 348);
       this.buttonRemoveDuplicateGeneralDico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonRemoveDuplicateGeneralDico.Name = "buttonRemoveDuplicateGeneralDico";
       this.buttonRemoveDuplicateGeneralDico.Size = new System.Drawing.Size(124, 55);
@@ -491,11 +493,23 @@
       this.labelListOfDictionaries.TabIndex = 17;
       this.labelListOfDictionaries.Text = "List of dictionaries:";
       // 
+      // buttonCountNewWords
+      // 
+      this.buttonCountNewWords.Location = new System.Drawing.Point(820, 154);
+      this.buttonCountNewWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonCountNewWords.Name = "buttonCountNewWords";
+      this.buttonCountNewWords.Size = new System.Drawing.Size(124, 35);
+      this.buttonCountNewWords.TabIndex = 18;
+      this.buttonCountNewWords.Text = "Count new";
+      this.buttonCountNewWords.UseVisualStyleBackColor = true;
+      this.buttonCountNewWords.Click += new System.EventHandler(this.ButtonCountNewWords_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonCountNewWords);
       this.Controls.Add(this.labelListOfDictionaries);
       this.Controls.Add(this.comboBoxLanguages);
       this.Controls.Add(this.labelListOfWords);
@@ -577,6 +591,7 @@
     private System.Windows.Forms.Label labelListOfWords;
     private System.Windows.Forms.ComboBox comboBoxLanguages;
     private System.Windows.Forms.Label labelListOfDictionaries;
+    private System.Windows.Forms.Button buttonCountNewWords;
   }
 }
 
