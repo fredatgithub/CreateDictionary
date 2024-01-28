@@ -94,5 +94,17 @@ namespace CreateDictionary.Properties {
                 this["LastLanguageUsed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textBoxSource {
+            get {
+                return ((string)(this["textBoxSource"]));
+            }
+            set {
+                this["textBoxSource"] = value;
+            }
+        }
     }
 }

@@ -35,24 +35,8 @@ namespace CreateDictionary
     {
       listBoxWords.Items.Clear();
       var newWords = new List<string>();
-      foreach (string word in textBoxSource.Text.Split(space))
-      {
-        var word3 = word.Trim().ToLower();
-        if (!newWords.Contains(word3) && !string.IsNullOrEmpty(word3))
-        {
-          if (word3.Contains(quote))
-          {
-            string word1 = word3.Split(Apostrophe)[FirstElement] + "'";
-            string word2 = word3.Split(Apostrophe)[SecondElement];
-            newWords.Add(RemovePunctuation(word1));
-            newWords.Add(RemovePunctuation(word2));
-          }
-          else
-          {
-            newWords.Add(RemovePunctuation(word3));
-          }
-        }
-      }
+      newWords = ExtractWordsFrom(textBoxSource.Text);
+
 
       foreach (string word in newWords)
       {
@@ -61,6 +45,42 @@ namespace CreateDictionary
 
       CountWords(labelCountWords, listBoxWords);
       ListBoxWords_SelectedIndexChanged(sender, e);
+    }
+
+    private List<string> ExtractWordsFrom(string text)
+    {
+      // ancienne méthode :
+      //foreach (string word in textBoxSource.Text.Split(space))
+      //{
+      //  var word3 = word.Trim().ToLower();
+      //  if (!newWords.Contains(word3) && !string.IsNullOrEmpty(word3))
+      //  {
+      //    if (word3.Contains(quote))
+      //    {
+      //      string word1 = word3.Split(Apostrophe)[FirstElement] + "'";
+      //      string word2 = word3.Split(Apostrophe)[SecondElement];
+      //      newWords.Add(RemovePunctuation(word1));
+      //      newWords.Add(RemovePunctuation(word2));
+      //    }
+      //    else
+      //    {
+      //      newWords.Add(RemovePunctuation(word3));
+      //    }
+      //  }
+      //}
+
+      // nouvelle méthode
+      var result = new List<string>();
+      foreach (string word in text.Split(space))
+      {
+        // gérer les exceptions
+        // séparer un ou plusieurs mots
+        // enlever la première majuscule
+        // enlever les espaces vides
+      }
+
+
+      return result;
     }
 
     private void CountWords(Label theLabel, ListBox theListBox)
@@ -199,6 +219,7 @@ namespace CreateDictionary
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
       //Settings.Default.LastLanguageUsed = frenchToolStripMenuItem.Checked ? "French" : "English";
+      Settings.Default.textBoxSource = textBoxSource.Text;
       Settings.Default.Save();
     }
 
@@ -208,6 +229,7 @@ namespace CreateDictionary
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+      textBoxSource.Text = Settings.Default.textBoxSource;
     }
 
     private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -448,6 +470,25 @@ namespace CreateDictionary
     private void ListBoxWords_SelectedIndexChanged(object sender, EventArgs e)
     {
       buttonCountNewWords.Enabled = listBoxWords.Items.Count > 0;
+    }
+
+    private void ButtonClearSource_Click(object sender, EventArgs e)
+    {
+      textBoxSource.Text = string.Empty;
+      buttonClearSource.Enabled = false;
+    }
+
+    private void TextBoxSource_TextChanged(object sender, EventArgs e)
+    {
+      buttonClearSource.Enabled = textBoxSource.Text != string.Empty;
+      if (textBoxSource.Text != string.Empty)
+      {
+        labelCountSourceWords.Text = $"Number of words: {textBoxSource.Text.Split(space).Count()}";
+      }
+      else
+      {
+        labelCountSourceWords.Text = "Number of words: 0";
+      }
     }
   }
 }

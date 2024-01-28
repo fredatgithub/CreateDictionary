@@ -77,6 +77,8 @@
       this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
       this.labelListOfDictionaries = new System.Windows.Forms.Label();
       this.buttonCountNewWords = new System.Windows.Forms.Button();
+      this.buttonClearSource = new System.Windows.Forms.Button();
+      this.labelCountSourceWords = new System.Windows.Forms.Label();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -325,6 +327,7 @@
       this.textBoxSource.Name = "textBoxSource";
       this.textBoxSource.Size = new System.Drawing.Size(325, 770);
       this.textBoxSource.TabIndex = 1;
+      this.textBoxSource.TextChanged += new System.EventHandler(this.TextBoxSource_TextChanged);
       // 
       // buttonAdd
       // 
@@ -504,11 +507,34 @@
       this.buttonCountNewWords.UseVisualStyleBackColor = true;
       this.buttonCountNewWords.Click += new System.EventHandler(this.ButtonCountNewWords_Click);
       // 
+      // buttonClearSource
+      // 
+      this.buttonClearSource.Enabled = false;
+      this.buttonClearSource.Location = new System.Drawing.Point(261, 75);
+      this.buttonClearSource.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonClearSource.Name = "buttonClearSource";
+      this.buttonClearSource.Size = new System.Drawing.Size(124, 35);
+      this.buttonClearSource.TabIndex = 19;
+      this.buttonClearSource.Text = "Clear";
+      this.buttonClearSource.UseVisualStyleBackColor = true;
+      this.buttonClearSource.Click += new System.EventHandler(this.ButtonClearSource_Click);
+      // 
+      // labelCountSourceWords
+      // 
+      this.labelCountSourceWords.AutoSize = true;
+      this.labelCountSourceWords.Location = new System.Drawing.Point(56, 902);
+      this.labelCountSourceWords.Name = "labelCountSourceWords";
+      this.labelCountSourceWords.Size = new System.Drawing.Size(146, 20);
+      this.labelCountSourceWords.TabIndex = 20;
+      this.labelCountSourceWords.Text = "Number of words: 0";
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.labelCountSourceWords);
+      this.Controls.Add(this.buttonClearSource);
       this.Controls.Add(this.buttonCountNewWords);
       this.Controls.Add(this.labelListOfDictionaries);
       this.Controls.Add(this.comboBoxLanguages);
@@ -592,6 +618,8 @@
     private System.Windows.Forms.ComboBox comboBoxLanguages;
     private System.Windows.Forms.Label labelListOfDictionaries;
     private System.Windows.Forms.Button buttonCountNewWords;
+    private System.Windows.Forms.Button buttonClearSource;
+    private System.Windows.Forms.Label labelCountSourceWords;
   }
 }
 
