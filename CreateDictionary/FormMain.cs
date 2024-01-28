@@ -1,4 +1,5 @@
 ﻿using CreateDictionary.Properties;
+using HelperLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -86,9 +87,9 @@ namespace CreateDictionary
         }
 
         // remove whatever is wrong
-        isNewWord = RemoveFirstCharacterIfNeeded(isNewWord);
-        isNewWord = RemoveLastCharacterIfNeeded(isNewWord);
-        isNewWord = FirstCharacterToLowerCase(isNewWord);
+        isNewWord = Helper.RemoveFirstCharacterIfNeeded(isNewWord);
+        isNewWord = Helper.RemoveLastCharacterIfNeeded(isNewWord);
+        isNewWord = Helper.FirstCharacterToLowerCase(isNewWord);
         if (isNewWord.Contains(period))
         {
           onlyOneWord = false;
@@ -107,54 +108,13 @@ namespace CreateDictionary
         result.Add(isNewWord);
       }
 
-
       return result;
     }
 
-    private string FirstCharacterToLowerCase(string word)
-    {
-      char firstLetter = word[0];
-      return $"{firstLetter.ToString().ToLower()}{word.Substring(1, word.Length - 1)}";
-    }
-
-    private string RemoveLastCharacterIfNeeded(string word)
-    {
-      var result = word;
-      var firstForbiddenCharacter = new char[] { '!', ',', ';', ':', '»' };
-      foreach (char item in firstForbiddenCharacter)
-      {
-        if (word.EndsWith(item.ToString()))
-        {
-          result = word.Substring(0, word.Length - 1);
-        }
-      }
-
-      return result;
-    }
-
-    private string RemoveFirstCharacterIfNeeded(string word)
-    {
-      var result = word;
-      var firstForbiddenCharacter = new char[] { '(', '«' };
-      foreach (char item in firstForbiddenCharacter)
-      {
-        if (word.StartsWith(item.ToString()))
-        {
-          result = word.Substring(1, word.Length - 1);
-        }
-      }
-
-      return result;
-    }
-
+    
     private void CountWords(Label theLabel, ListBox theListBox)
     {
       theLabel.Text = $"Count: {theListBox.Items.Count}";
-    }
-
-    private string RemovePunctuation(string word)
-    {
-      return word.ToLower().Trim().Replace(".", "").Replace(",", "").Trim('"');
     }
 
     private void ButtonDelete_Click(object sender, EventArgs e)

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDictionary", "CreateD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDictionary.UnitTestProject", "CreateDictionary.UnitTestProject\CreateDictionary.UnitTestProject.csproj", "{EB404B3D-7277-4F9A-B188-4809860228BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperLibrary", "HelperLibrary\HelperLibrary.csproj", "{747502E6-38BF-4E59-B7E4-09734474136F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EB404B3D-7277-4F9A-B188-4809860228BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB404B3D-7277-4F9A-B188-4809860228BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB404B3D-7277-4F9A-B188-4809860228BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{747502E6-38BF-4E59-B7E4-09734474136F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{747502E6-38BF-4E59-B7E4-09734474136F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{747502E6-38BF-4E59-B7E4-09734474136F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{747502E6-38BF-4E59-B7E4-09734474136F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
