@@ -35,8 +35,7 @@ namespace CreateDictionary
     {
       listBoxWords.Items.Clear();
       var newWords = new List<string>();
-      newWords = ExtractWordsFrom(textBoxSource.Text);
-
+      newWords = ExtractWordsFrom(textBoxSource.Text, newWords);
 
       foreach (string word in newWords)
       {
@@ -47,7 +46,7 @@ namespace CreateDictionary
       ListBoxWords_SelectedIndexChanged(sender, e);
     }
 
-    private List<string> ExtractWordsFrom(string text)
+    private List<string> ExtractWordsFrom(string text, List<string> newWords)
     {
       // ancienne méthode :
       //foreach (string word in textBoxSource.Text.Split(space))
@@ -77,8 +76,73 @@ namespace CreateDictionary
         // séparer un ou plusieurs mots
         // enlever la première majuscule
         // enlever les espaces vides
+        var isNewWord = word;
+        var isNewWord2 = string.Empty;
+        var onlyOneWord = true;
+        if (newWords.Contains(word) || string.IsNullOrEmpty(word))
+        {
+          // on ne prend pas les espaces blancs ni les mots déjà trouvés
+          continue;
+        }
+
+        // remove whatever is wrong
+        isNewWord = RemoveFirstCharacterIfNeeded(isNewWord);
+        isNewWord = RemoveLastCharacterIfNeeded(isNewWord);
+        isNewWord = FirstCharacterToLowerCase(isNewWord);
+        if (isNewWord.Contains(period))
+        {
+          onlyOneWord = false;
+          var tmpWord = isNewWord;
+          isNewWord = isNewWord.Split(period)[FirstElement];
+          isNewWord2 = tmpWord.Split(period)[SecondElement];
+        }
+
+        if (!onlyOneWord && !string.IsNullOrEmpty(isNewWord2))
+        {
+          result.Add(isNewWord2);
+          onlyOneWord = true;
+          isNewWord2 = string.Empty;
+        }
+
+        result.Add(isNewWord);
       }
 
+
+      return result;
+    }
+
+    private string FirstCharacterToLowerCase(string word)
+    {
+      char firstLetter = word[0];
+      return $"{firstLetter.ToString().ToLower()}{word.Substring(1, word.Length - 1)}";
+    }
+
+    private string RemoveLastCharacterIfNeeded(string word)
+    {
+      var result = word;
+      var firstForbiddenCharacter = new char[] { '!', ',', ';', ':', '»' };
+      foreach (char item in firstForbiddenCharacter)
+      {
+        if (word.EndsWith(item.ToString()))
+        {
+          result = word.Substring(0, word.Length - 1);
+        }
+      }
+
+      return result;
+    }
+
+    private string RemoveFirstCharacterIfNeeded(string word)
+    {
+      var result = word;
+      var firstForbiddenCharacter = new char[] { '(', '«' };
+      foreach (char item in firstForbiddenCharacter)
+      {
+        if (word.StartsWith(item.ToString()))
+        {
+          result = word.Substring(1, word.Length - 1);
+        }
+      }
 
       return result;
     }
