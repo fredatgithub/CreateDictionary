@@ -79,6 +79,7 @@
       this.buttonCountNewWords = new System.Windows.Forms.Button();
       this.buttonClearSource = new System.Windows.Forms.Button();
       this.labelCountSourceWords = new System.Windows.Forms.Label();
+      this.buttonProperNouns = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -528,11 +529,23 @@
       this.labelCountSourceWords.TabIndex = 20;
       this.labelCountSourceWords.Text = "Number of words: 0";
       // 
+      // buttonProperNouns
+      // 
+      this.buttonProperNouns.Location = new System.Drawing.Point(425, 293);
+      this.buttonProperNouns.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonProperNouns.Name = "buttonProperNouns";
+      this.buttonProperNouns.Size = new System.Drawing.Size(124, 55);
+      this.buttonProperNouns.TabIndex = 21;
+      this.buttonProperNouns.Text = "Add Proper Nom";
+      this.buttonProperNouns.UseVisualStyleBackColor = true;
+      this.buttonProperNouns.Click += new System.EventHandler(this.ButtonProperNouns_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonProperNouns);
       this.Controls.Add(this.labelCountSourceWords);
       this.Controls.Add(this.buttonClearSource);
       this.Controls.Add(this.buttonCountNewWords);
@@ -620,6 +633,7 @@
     private System.Windows.Forms.Button buttonCountNewWords;
     private System.Windows.Forms.Button buttonClearSource;
     private System.Windows.Forms.Label labelCountSourceWords;
+    private System.Windows.Forms.Button buttonProperNouns;
   }
 }
 

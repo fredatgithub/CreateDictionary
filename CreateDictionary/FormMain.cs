@@ -98,6 +98,16 @@ namespace CreateDictionary
           isNewWord2 = tmpWord.Split(period)[SecondElement];
         }
 
+        if (isNewWord.Contains("\r\n"))
+        {
+          onlyOneWord = false;
+          isNewWord = isNewWord.Replace("\r\n", " ");
+          var tmpWord = isNewWord;
+          isNewWord = isNewWord.Split(space)[FirstElement];
+          isNewWord2 = tmpWord.Split(space)[SecondElement];
+          isNewWord2 = Helper.RemoveFirstCharacterIfNeeded(isNewWord2);
+        }
+
         if (!onlyOneWord && !string.IsNullOrEmpty(isNewWord2))
         {
           result.Add(isNewWord2);
@@ -512,6 +522,23 @@ namespace CreateDictionary
       else
       {
         labelCountSourceWords.Text = "Number of words: 0";
+      }
+    }
+
+    private void ButtonProperNouns_Click(object sender, EventArgs e)
+    {
+      var filename = "properNouns.txt";
+      if (!File.Exists(filename))
+      {
+        try
+        {
+          File.Create(filename);
+        }
+        catch (Exception exception)
+        {
+          MessageBox.Show($"There was an error while trying to create the file {filename}. The error is: {exception.Message}");
+          return;
+        }
       }
     }
   }

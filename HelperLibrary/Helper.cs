@@ -10,7 +10,8 @@
       }
 
       char firstLetter = word[0];
-      return $"{firstLetter.ToString().ToLower()}{word.Substring(1, word.Length - 1)}";
+      var verification = $"{firstLetter.ToString().ToLower()}{word.Substring(1, word.Length - 1)}";
+      return verification;
     }
 
     public static string RemoveLastCharacterIfNeeded(string word)
