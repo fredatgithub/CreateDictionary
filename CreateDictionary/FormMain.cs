@@ -504,6 +504,7 @@ namespace CreateDictionary
     private void ListBoxWords_SelectedIndexChanged(object sender, EventArgs e)
     {
       buttonCountNewWords.Enabled = listBoxWords.Items.Count > 0;
+      buttonProperNouns.Enabled = listBoxWords.Items.Count > 0; ;
     }
 
     private void ButtonClearSource_Click(object sender, EventArgs e)
@@ -540,6 +541,28 @@ namespace CreateDictionary
           return;
         }
       }
+
+      if (listBoxWords.SelectedIndex == -1)
+      {
+        MessageBox.Show("You have to choose an item first");
+        return;
+      }
+
+      // add word only if it is not already in
+      var exceptionWords = ReadFile(filename).ToList();
+      string word = listBoxWords.SelectedItem.ToString();
+      word = Helper.RemoveCarriageReturnPrefix(word);
+      if (!exceptionWords.Contains(word))
+      {
+        // word should be cleaned of carriage return
+        if (!Helper.AddWordTofile(filename, word))
+        {
+          MessageBox.Show($"The word: {listBoxWords.SelectedItem} could not be inserted into the file : {filename}");
+          return;
+        }
+      }
+
+      listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
     }
   }
 }

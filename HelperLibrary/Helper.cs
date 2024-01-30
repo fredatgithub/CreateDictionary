@@ -1,4 +1,7 @@
-﻿namespace HelperLibrary
+﻿using System;
+using System.IO;
+
+namespace HelperLibrary
 {
   public static class Helper
   {
@@ -47,6 +50,31 @@
       }
 
       return result;
+    }
+
+    public static bool AddWordTofile(string filename, string word)
+    {
+      var result = false;
+      try
+      {
+        using (StreamWriter sr = new StreamWriter(filename, true))
+        {
+          sr.WriteLine(word);
+        }
+
+        result = true;
+      }
+      catch (Exception)
+      {
+        result |= false;  
+      }
+
+      return result;
+    }
+
+    public static string RemoveCarriageReturnPrefix(string word)
+    {
+      return word.Replace("\r\n", "");
     }
   }
 }

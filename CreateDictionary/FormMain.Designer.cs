@@ -531,6 +531,7 @@
       // 
       // buttonProperNouns
       // 
+      this.buttonProperNouns.Enabled = false;
       this.buttonProperNouns.Location = new System.Drawing.Point(425, 293);
       this.buttonProperNouns.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonProperNouns.Name = "buttonProperNouns";
