@@ -22,6 +22,8 @@ namespace CreateDictionary
     readonly Dictionary<string, string> languageDicoFr = new Dictionary<string, string>();
     private const char space = ' ';
     private const char period = '.';
+    private const char comma = ',';
+    private const char semiColon = ';';
     private const string quote = "'";
     private const char Apostrophe = '\'';
     private const int FirstElement = 0;
@@ -87,6 +89,12 @@ namespace CreateDictionary
           continue;
         }
 
+        if (Helper.IsOnlyNumbers(isNewWord.Trim()) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(period)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(comma)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(semiColon)))
+        {
+          // on ne prend pas les nombres
+          continue;
+        }
+
         // remove whatever is wrong
         isNewWord = Helper.RemoveFirstCharacterIfNeeded(isNewWord);
         isNewWord = Helper.RemoveLastCharacterIfNeeded(isNewWord);
@@ -112,8 +120,6 @@ namespace CreateDictionary
         if (!onlyOneWord && !string.IsNullOrEmpty(isNewWord2))
         {
           result.Add(isNewWord2);
-          onlyOneWord = true;
-          isNewWord2 = string.Empty;
         }
 
         result.Add(isNewWord);
@@ -156,8 +162,6 @@ namespace CreateDictionary
 
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
-
-    
 
     private void ButtonSave_Click(object sender, EventArgs e)
     {
@@ -275,12 +279,12 @@ namespace CreateDictionary
 
     private void FrenchToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      SetLanguage(Language.French.ToString());
+      SetLanguage(nameof(Language.French));
     }
 
     private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      SetLanguage(Language.English.ToString());
+      SetLanguage(nameof(Language.English));
     }
 
     private void SetLanguage(string myLanguage)

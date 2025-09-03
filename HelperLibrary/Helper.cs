@@ -107,5 +107,20 @@ namespace HelperLibrary
 
       return result;
     }
+
+    public static bool IsOnlyNumbers(string word)
+    {
+      var result = true;
+      foreach (char c in word)
+      {
+        if (!char.IsDigit(c))
+        {
+          result = false;
+          break;
+        }
+      }
+
+      return result;
+    }
   }
 }
