@@ -130,9 +130,16 @@ namespace CreateDictionary
 
     private void ButtonDelete_Click(object sender, EventArgs e)
     {
+      int selectWordIndex = listBoxWords.SelectedIndex;
       if (listBoxWords.SelectedIndex != -1)
       {
-        listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
+        listBoxWords.Items.RemoveAt(selectWordIndex);
+        // select the next item if possible
+        if (listBoxWords.Items.Count > 0)
+        {
+          listBoxWords.SelectedIndex = selectWordIndex;
+        }
+
         CountWords(labelCountWords, listBoxWords);
       }
     }
