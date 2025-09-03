@@ -12,24 +12,38 @@ using Tools;
 
 namespace CreateDictionary
 {
+  /// <summary>
+  /// Formulaire principal de l'application CreateDictionary.
+  /// Permet de gérer un dictionnaire de mots avec des fonctionnalités d'ajout, 
+  /// de suppression et de gestion des mots.
+  /// </summary>
   public partial class FormMain : Form
   {
+    private readonly Dictionary<string, string> languageDicoEn = new Dictionary<string, string>();
+    private readonly Dictionary<string, string> languageDicoFr = new Dictionary<string, string>();
+    private const int FirstElement = 0;
+    private const int SecondElement = 1;
+    private const string ProperNounFilename = "properNouns.txt";
+
+    /// <summary>
+    /// Initialise une nouvelle instance de la classe <see cref="FormMain"/>
+    /// </summary>
     public FormMain()
     {
       InitializeComponent();
     }
 
-    readonly Dictionary<string, string> languageDicoEn = new Dictionary<string, string>();
-    readonly Dictionary<string, string> languageDicoFr = new Dictionary<string, string>();
-    private const int FirstElement = 0;
-    private const int SecondElement = 1;
-    private const string ProperNounFilename = "properNouns.txt";
-
+    /// <summary>
+    /// Gère l'événement de clic sur le menu Quitter
+    /// </summary>
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Application.Exit();
     }
 
+    /// <summary>
+    /// Gère l'événement de clic sur le bouton Ajouter
+    /// </summary>
     private void ButtonAdd_Click(object sender, EventArgs e)
     {
       listBoxWords.Items.Clear();
@@ -45,6 +59,12 @@ namespace CreateDictionary
       ListBoxWords_SelectedIndexChanged(sender, e);
     }
 
+    /// <summary>
+    /// Extrait les mots d'un texte en appliquant différents traitements
+    /// </summary>
+    /// <param name="text">Le texte source à analyser</param>
+    /// <param name="newWords">La liste des mots existants</param>
+    /// <returns>Une liste de mots traités</returns>
     private List<string> ExtractWordsFrom(string text, List<string> newWords)
     {
       // ancienne méthode :
@@ -123,12 +143,19 @@ namespace CreateDictionary
       return result;
     }
 
-    
+    /// <summary>
+    /// Met à jour l'affichage du nombre de mots dans un contrôle Label
+    /// </summary>
+    /// <param name="theLabel">Le contrôle Label à mettre à jour</param>
+    /// <param name="theListBox">La ListBox contenant les mots à compter</param>
     private void CountWords(Label theLabel, ListBox theListBox)
     {
       theLabel.Text = $"Count: {theListBox.Items.Count}";
     }
 
+    /// <summary>
+    /// Gère l'événement de clic sur le bouton Supprimer
+    /// </summary>
     private void ButtonDelete_Click(object sender, EventArgs e)
     {
       int selectWordIndex = listBoxWords.SelectedIndex;
@@ -145,6 +172,9 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Gère l'événement de clic sur le bouton Charger
+    /// </summary>
     private void ButtonLoad_Click(object sender, EventArgs e)
     {
       listBoxGeneralDico.Items.Clear();
@@ -158,6 +188,9 @@ namespace CreateDictionary
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
 
+    /// <summary>
+    /// Gère l'événement de clic sur le bouton Enregistrer
+    /// </summary>
     private void ButtonSave_Click(object sender, EventArgs e)
     {
       if (listBoxGeneralDico.Items.Count > 0)
@@ -180,6 +213,12 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Écrit une liste de chaînes dans un fichier
+    /// </summary>
+    /// <param name="filename">Le chemin du fichier de destination</param>
+    /// <param name="items">La liste des chaînes à écrire</param>
+    /// <returns>True si l'opération a réussi, False sinon</returns>
     private bool WriteFile(string filename, List<string> items)
     {
       bool result = false;
@@ -203,6 +242,9 @@ namespace CreateDictionary
       return result;
     }
 
+    /// <summary>
+    /// Gère l'événement de clic sur le bouton Copier
+    /// </summary>
     private void ButtonCopy_Click(object sender, EventArgs e)
     {
       foreach (string word in listBoxWords.Items)
@@ -216,6 +258,9 @@ namespace CreateDictionary
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
 
+    /// <summary>
+    /// Gère l'événement de chargement du formulaire
+    /// </summary>
     private void FormMain_Load(object sender, EventArgs e)
     {
       GetWindowValue();
@@ -226,6 +271,9 @@ namespace CreateDictionary
       ListBoxWords_SelectedIndexChanged(sender, e);
     }
 
+    /// <summary>
+    /// Charge les dictionnaires de langues disponibles
+    /// </summary>
     private void LoadLanguageDictionaries()
     {
       comboBoxLanguages.Items.Clear();
@@ -235,6 +283,9 @@ namespace CreateDictionary
       comboBoxLanguages.Items.Add("Latin");
     }
 
+    /// <summary>
+    /// Enregistre les paramètres de la fenêtre
+    /// </summary>
     private void SaveWindowValue()
     {
       Settings.Default.WindowHeight = Height;
@@ -246,6 +297,9 @@ namespace CreateDictionary
       Settings.Default.Save();
     }
 
+    /// <summary>
+    /// Récupère les paramètres de la fenêtre
+    /// </summary>
     private void GetWindowValue()
     {
       Width = Settings.Default.WindowWidth;
@@ -255,16 +309,26 @@ namespace CreateDictionary
       textBoxSource.Text = Settings.Default.textBoxSource;
     }
 
+    /// <summary>
+    /// Gère l'événement de fermeture du formulaire
+    /// </summary>
     private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
     {
       SaveWindowValue();
     }
 
+    /// <summary>
+    /// Affiche le titre de la fenêtre avec la version de l'application
+    /// </summary>
     private void DisplayTitle()
     {
       Text += GetApplicationVersion();
     }
 
+    /// <summary>
+    /// Obtient la version de l'application
+    /// </summary>
+    /// <returns>La version de l'application au format "Vx.y.z.w"</returns>
     private string GetApplicationVersion()
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
@@ -272,16 +336,26 @@ namespace CreateDictionary
       return string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
     }
 
+    /// <summary>
+    /// Gère le changement de langue vers le français
+    /// </summary>
     private void FrenchToolStripMenuItem_Click(object sender, EventArgs e)
     {
       SetLanguage(nameof(Language.French));
     }
 
+    /// <summary>
+    /// Gère le changement de langue vers l'anglais
+    /// </summary>
     private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
     {
       SetLanguage(nameof(Language.English));
     }
 
+    /// <summary>
+    /// Définit la langue de l'interface
+    /// </summary>
+    /// <param name="myLanguage">La langue à utiliser ("French" ou "English")</param>
     private void SetLanguage(string myLanguage)
     {
       switch (myLanguage)
@@ -352,12 +426,25 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Énumération des langues disponibles
+    /// </summary>
     public enum Language
     {
+      /// <summary>
+      /// Langue française
+      /// </summary>
       French,
+      
+      /// <summary>
+      /// Langue anglaise
+      /// </summary>
       English
     }
 
+    /// <summary>
+    /// Charge les fichiers de langue
+    /// </summary>
     private void LoadLanguages()
     {
       if (!File.Exists(Settings.Default.LanguageFileName))
@@ -388,6 +475,9 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Crée le fichier de langue par défaut s'il n'existe pas
+    /// </summary>
     private static void CreateLanguageFile()
     {
       List<string> minimumVersion = new List<string>
@@ -415,6 +505,9 @@ namespace CreateDictionary
       sw.Close();
     }
 
+    /// <summary>
+    /// Supprime les doublons dans la liste des mots
+    /// </summary>
     private void ButtonRemoveDuplicate_Click(object sender, EventArgs e)
     {
       var dicoWords = new Dictionary<string, string>();
@@ -435,6 +528,9 @@ namespace CreateDictionary
       CountWords(labelCountWords, listBoxWords);
     }
 
+    /// <summary>
+    /// Supprime un mot du dictionnaire général
+    /// </summary>
     private void ButtonDeleteWordsGeneralDico_Click(object sender, EventArgs e)
     {
       if (listBoxGeneralDico.SelectedIndex != -1)
@@ -444,6 +540,9 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Supprime les doublons dans le dictionnaire général
+    /// </summary>
     private void ButtonRemoveDuplicateGeneralDico_Click(object sender, EventArgs e)
     {
       var dicoWords = new Dictionary<string, string>();
@@ -464,11 +563,9 @@ namespace CreateDictionary
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
 
-    private void ComboBoxLanguages_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
+    /// <summary>
+    /// Compte le nombre de nouveaux mots à ajouter au dictionnaire général
+    /// </summary>
     private void ButtonCountNewWords_Click(object sender, EventArgs e)
     {
       int newWords = 0;
@@ -490,18 +587,27 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Gère la sélection d'un mot dans la liste des mots
+    /// </summary>
     private void ListBoxWords_SelectedIndexChanged(object sender, EventArgs e)
     {
       buttonCountNewWords.Enabled = listBoxWords.Items.Count > 0;
       buttonProperNouns.Enabled = listBoxWords.Items.Count > 0; ;
     }
 
+    /// <summary>
+    /// Efface le contenu de la zone de texte source
+    /// </summary>
     private void ButtonClearSource_Click(object sender, EventArgs e)
     {
       textBoxSource.Text = string.Empty;
       buttonClearSource.Enabled = false;
     }
 
+    /// <summary>
+    /// Met à jour le nombre de mots dans la zone de texte source
+    /// </summary>
     private void TextBoxSource_TextChanged(object sender, EventArgs e)
     {
       buttonClearSource.Enabled = textBoxSource.Text != string.Empty;
@@ -515,6 +621,9 @@ namespace CreateDictionary
       }
     }
 
+    /// <summary>
+    /// Ajoute un mot à la liste des noms propres
+    /// </summary>
     private void ButtonProperNouns_Click(object sender, EventArgs e)
     {
       
@@ -554,6 +663,9 @@ namespace CreateDictionary
       listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
     }
 
+    /// <summary>
+    /// Copie un mot dans la zone de texte source
+    /// </summary>
     private void ButtonCopyWord_Click(object sender, EventArgs e)
     {
       if (listBoxWords.SelectedIndex == -1)
@@ -565,6 +677,9 @@ namespace CreateDictionary
       textBoxSource.Text += $" {listBoxWords.SelectedItem} "; 
     }
 
+    /// <summary>
+    /// Met un mot en minuscule
+    /// </summary>
     private void ButtonToLowerCase_Click(object sender, EventArgs e)
     {
       if (listBoxWords.SelectedIndex == -1)
@@ -579,6 +694,18 @@ namespace CreateDictionary
       CountWords(labelCountWords, listBoxWords);
       ListBoxWords_SelectedIndexChanged(sender, e);
 
+    }
+
+    /// <summary>
+    /// Gère le changement de sélection dans la ComboBox des langues
+    /// </summary>
+    private void ComboBoxLanguages_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (comboBoxLanguages.SelectedItem != null)
+      {
+        string selectedLanguage = comboBoxLanguages.SelectedItem.ToString();
+        SetLanguage(selectedLanguage);
+      }
     }
   }
 }
