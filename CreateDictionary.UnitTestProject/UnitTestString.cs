@@ -133,5 +133,69 @@ namespace CreateDictionary.UnitTestProject
       string result = Helper.RemoveFirstCharacterIfNeeded(input);
       Assert.AreEqual("Hello", result);
     }
+
+    [TestMethod]
+    public void IsOnlyNumbers_EmptyString_ReturnsFalse()
+    {
+      string input = string.Empty;
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_NumbersOnly_ReturnsTrue()
+    {
+      string input = "12345";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsTrue(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_LettersOnly_ReturnsFalse()
+    {
+      string input = "abcde";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_SpecialCharacters_ReturnsFalse()
+    {
+      string input = "!@#$%^";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_WithSpaces_ReturnsFalse()
+    {
+      string input = "123 456";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_NumbersAndLetters_ReturnsFalse()
+    {
+      string input = "123abc";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_NumbersAndSpecialChars_ReturnsFalse()
+    {
+      string input = "123!@#";
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void IsOnlyNumbers_NullInput_ReturnsFalse()
+    {
+      string input = null;
+      bool result = Helper.IsOnlyNumbers(input);
+      Assert.IsFalse(result);
+    }
   }
 }

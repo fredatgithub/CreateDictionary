@@ -110,6 +110,11 @@ namespace HelperLibrary
 
     public static bool IsOnlyNumbers(string word)
     {
+      if (string.IsNullOrEmpty(word))
+      {
+        return false;
+      }
+
       var result = true;
       foreach (char c in word)
       {
