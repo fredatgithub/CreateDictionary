@@ -80,6 +80,8 @@
       this.buttonClearSource = new System.Windows.Forms.Button();
       this.labelCountSourceWords = new System.Windows.Forms.Label();
       this.buttonProperNouns = new System.Windows.Forms.Button();
+      this.buttonCopyWord = new System.Windows.Forms.Button();
+      this.buttonToLowerCase = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -348,7 +350,6 @@
       this.listBoxWords.Location = new System.Drawing.Point(581, 114);
       this.listBoxWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxWords.Name = "listBoxWords";
-      this.listBoxWords.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
       this.listBoxWords.Size = new System.Drawing.Size(231, 764);
       this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
@@ -541,11 +542,35 @@
       this.buttonProperNouns.UseVisualStyleBackColor = true;
       this.buttonProperNouns.Click += new System.EventHandler(this.ButtonProperNouns_Click);
       // 
+      // buttonCopyWord
+      // 
+      this.buttonCopyWord.Location = new System.Drawing.Point(425, 368);
+      this.buttonCopyWord.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonCopyWord.Name = "buttonCopyWord";
+      this.buttonCopyWord.Size = new System.Drawing.Size(124, 35);
+      this.buttonCopyWord.TabIndex = 22;
+      this.buttonCopyWord.Text = "Copy word";
+      this.buttonCopyWord.UseVisualStyleBackColor = true;
+      this.buttonCopyWord.Click += new System.EventHandler(this.ButtonCopyWord_Click);
+      // 
+      // buttonToLowerCase
+      // 
+      this.buttonToLowerCase.Location = new System.Drawing.Point(425, 413);
+      this.buttonToLowerCase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonToLowerCase.Name = "buttonToLowerCase";
+      this.buttonToLowerCase.Size = new System.Drawing.Size(124, 35);
+      this.buttonToLowerCase.TabIndex = 23;
+      this.buttonToLowerCase.Text = "To lowerCase";
+      this.buttonToLowerCase.UseVisualStyleBackColor = true;
+      this.buttonToLowerCase.Click += new System.EventHandler(this.ButtonToLowerCase_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1617, 940);
+      this.Controls.Add(this.buttonToLowerCase);
+      this.Controls.Add(this.buttonCopyWord);
       this.Controls.Add(this.buttonProperNouns);
       this.Controls.Add(this.labelCountSourceWords);
       this.Controls.Add(this.buttonClearSource);
@@ -635,6 +660,8 @@
     private System.Windows.Forms.Button buttonClearSource;
     private System.Windows.Forms.Label labelCountSourceWords;
     private System.Windows.Forms.Button buttonProperNouns;
+    private System.Windows.Forms.Button buttonCopyWord;
+    private System.Windows.Forms.Button buttonToLowerCase;
   }
 }
 

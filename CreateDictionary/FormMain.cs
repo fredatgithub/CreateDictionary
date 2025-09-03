@@ -547,5 +547,32 @@ namespace CreateDictionary
 
       listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
     }
+
+    private void ButtonCopyWord_Click(object sender, EventArgs e)
+    {
+      if (listBoxWords.SelectedIndex == -1)
+      {
+        MessageBox.Show("Please select a word first");
+        return;
+      }
+
+      textBoxSource.Text += $" {listBoxWords.SelectedItem} "; 
+    }
+
+    private void ButtonToLowerCase_Click(object sender, EventArgs e)
+    {
+      if (listBoxWords.SelectedIndex == -1)
+      {
+        MessageBox.Show("Please select a word first");
+        return;
+      }
+
+      var word = listBoxWords.SelectedItem.ToString().ToLower();
+      listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
+      listBoxWords.Items.Add(word);
+      CountWords(labelCountWords, listBoxWords);
+      ListBoxWords_SelectedIndexChanged(sender, e);
+
+    }
   }
 }
