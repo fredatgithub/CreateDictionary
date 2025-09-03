@@ -67,27 +67,6 @@ namespace CreateDictionary
     /// <returns>Une liste de mots traités</returns>
     private List<string> ExtractWordsFrom(string text, List<string> newWords)
     {
-      // ancienne méthode :
-      //foreach (string word in textBoxSource.Text.Split(space))
-      //{
-      //  var word3 = word.Trim().ToLower();
-      //  if (!newWords.Contains(word3) && !string.IsNullOrEmpty(word3))
-      //  {
-      //    if (word3.Contains(quote))
-      //    {
-      //      string word1 = word3.Split(Apostrophe)[FirstElement] + "'";
-      //      string word2 = word3.Split(Apostrophe)[SecondElement];
-      //      newWords.Add(RemovePunctuation(word1));
-      //      newWords.Add(RemovePunctuation(word2));
-      //    }
-      //    else
-      //    {
-      //      newWords.Add(RemovePunctuation(word3));
-      //    }
-      //  }
-      //}
-
-      // nouvelle méthode
       var result = new List<string>();
       foreach (string word in text.Split(Punctuation.Space))
       {
