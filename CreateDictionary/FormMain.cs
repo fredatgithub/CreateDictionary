@@ -26,6 +26,7 @@ namespace CreateDictionary
     private const char Apostrophe = '\'';
     private const int FirstElement = 0;
     private const int SecondElement = 1;
+    private const string ProperNounFilename = "properNouns.txt";
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -37,7 +38,7 @@ namespace CreateDictionary
       listBoxWords.Items.Clear();
       var newWords = new List<string>();
       newWords = ExtractWordsFrom(textBoxSource.Text, newWords);
-
+      newWords = Helper.RemoveExceptionWords(newWords, ProperNounFilename);
       foreach (string word in newWords)
       {
         listBoxWords.Items.Add(word);
@@ -140,7 +141,7 @@ namespace CreateDictionary
     {
       listBoxGeneralDico.Items.Clear();
       //listBoxGeneralDico.Items.AddRange(ReadFile("Dictionaries\\French.txt"));
-      var allWords = ReadFile("Dictionaries\\French.txt");
+      var allWords = Helper.ReadFile("Dictionaries\\French.txt");
       foreach (string word in allWords)
       {
         listBoxGeneralDico.Items.Add(word);
@@ -149,25 +150,7 @@ namespace CreateDictionary
       CountWords(labelGeneralCount, listBoxGeneralDico);
     }
 
-    private string[] ReadFile(string filename)
-    {
-      var result = new List<string>();
-      try
-      {
-        using (StreamReader sr = new StreamReader(filename))
-        {
-          while (!sr.EndOfStream)
-          {
-            result.Add(sr.ReadLine());
-          }
-        }
-      }
-      catch (Exception)
-      {
-      }
-
-      return result.ToArray();
-    }
+    
 
     private void ButtonSave_Click(object sender, EventArgs e)
     {
@@ -528,16 +511,16 @@ namespace CreateDictionary
 
     private void ButtonProperNouns_Click(object sender, EventArgs e)
     {
-      var filename = "properNouns.txt";
-      if (!File.Exists(filename))
+      
+      if (!File.Exists(ProperNounFilename))
       {
         try
         {
-          File.Create(filename);
+          File.Create(ProperNounFilename);
         }
         catch (Exception exception)
         {
-          MessageBox.Show($"There was an error while trying to create the file {filename}. The error is: {exception.Message}");
+          MessageBox.Show($"There was an error while trying to create the file {ProperNounFilename}. The error is: {exception.Message}");
           return;
         }
       }
@@ -549,15 +532,15 @@ namespace CreateDictionary
       }
 
       // add word only if it is not already in
-      var exceptionWords = ReadFile(filename).ToList();
+      var exceptionWords = Helper.ReadFile(ProperNounFilename).ToList();
       string word = listBoxWords.SelectedItem.ToString();
+      // word should be cleaned of carriage return before inserting into a file
       word = Helper.RemoveCarriageReturnPrefix(word);
       if (!exceptionWords.Contains(word))
       {
-        // word should be cleaned of carriage return
-        if (!Helper.AddWordTofile(filename, word))
+        if (!Helper.AddWordTofile(ProperNounFilename, word))
         {
-          MessageBox.Show($"The word: {listBoxWords.SelectedItem} could not be inserted into the file : {filename}");
+          MessageBox.Show($"The word: {listBoxWords.SelectedItem} could not be inserted into the file : {ProperNounFilename}");
           return;
         }
       }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace HelperLibrary
 {
@@ -20,8 +22,8 @@ namespace HelperLibrary
     public static string RemoveLastCharacterIfNeeded(string word)
     {
       var result = word;
-      var firstForbiddenCharacter = new char[] { '!', ',', ';', ':', '»' };
-      foreach (char item in firstForbiddenCharacter)
+      var firstForbiddenCharacters = new char[] { '!', ',', ';', ':', '»', '?' };
+      foreach (char item in firstForbiddenCharacters)
       {
         if (word.EndsWith(item.ToString()))
         {
@@ -75,6 +77,35 @@ namespace HelperLibrary
     public static string RemoveCarriageReturnPrefix(string word)
     {
       return word.Replace("\r\n", "");
+    }
+
+    public static List<string> RemoveExceptionWords(List<string> newWords, string filename)
+    {
+      var result = new List<string>();
+      // List<car> result = list2.Except(list1).ToList();
+      var exceptionWords = ReadFile(filename);
+      result = newWords.Except(exceptionWords).ToList();
+      return result;
+    }
+
+    public static List<string> ReadFile(string filename)
+    {
+      var result = new List<string>();
+      try
+      {
+        using (StreamReader sr = new StreamReader(filename))
+        {
+          while (!sr.EndOfStream)
+          {
+            result.Add(sr.ReadLine());
+          }
+        }
+      }
+      catch (Exception)
+      {
+      }
+
+      return result;
     }
   }
 }
