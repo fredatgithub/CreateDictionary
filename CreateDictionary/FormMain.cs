@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Tools;
 
 namespace CreateDictionary
 {
@@ -20,12 +21,6 @@ namespace CreateDictionary
 
     readonly Dictionary<string, string> languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> languageDicoFr = new Dictionary<string, string>();
-    private const char space = ' ';
-    private const char period = '.';
-    private const char comma = ',';
-    private const char semiColon = ';';
-    private const string quote = "'";
-    private const char Apostrophe = '\'';
     private const int FirstElement = 0;
     private const int SecondElement = 1;
     private const string ProperNounFilename = "properNouns.txt";
@@ -74,7 +69,7 @@ namespace CreateDictionary
 
       // nouvelle méthode
       var result = new List<string>();
-      foreach (string word in text.Split(space))
+      foreach (string word in text.Split(Punctuation.Space))
       {
         // gérer les exceptions
         // séparer un ou plusieurs mots
@@ -89,7 +84,7 @@ namespace CreateDictionary
           continue;
         }
 
-        if (Helper.IsOnlyNumbers(isNewWord.Trim()) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(period)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(comma)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(semiColon)))
+        if (Helper.IsOnlyNumbers(isNewWord.Trim()) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(Punctuation.Period)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(Punctuation.Comma)) || Helper.IsOnlyNumbers(isNewWord.TrimEnd(Punctuation.SemiColon)))
         {
           // on ne prend pas les nombres
           continue;
@@ -99,12 +94,12 @@ namespace CreateDictionary
         isNewWord = Helper.RemoveFirstCharacterIfNeeded(isNewWord);
         isNewWord = Helper.RemoveLastCharacterIfNeeded(isNewWord);
         isNewWord = Helper.FirstCharacterToLowerCase(isNewWord);
-        if (isNewWord.Contains(period))
+        if (isNewWord.Contains(Punctuation.Period))
         {
           onlyOneWord = false;
           var tmpWord = isNewWord;
-          isNewWord = isNewWord.Split(period)[FirstElement];
-          isNewWord2 = tmpWord.Split(period)[SecondElement];
+          isNewWord = isNewWord.Split(Punctuation.Period)[FirstElement];
+          isNewWord2 = tmpWord.Split(Punctuation.Period)[SecondElement];
         }
 
         if (isNewWord.Contains("\r\n"))
@@ -112,8 +107,8 @@ namespace CreateDictionary
           onlyOneWord = false;
           isNewWord = isNewWord.Replace("\r\n", " ");
           var tmpWord = isNewWord;
-          isNewWord = isNewWord.Split(space)[FirstElement];
-          isNewWord2 = tmpWord.Split(space)[SecondElement];
+          isNewWord = isNewWord.Split(Punctuation.Space)[FirstElement];
+          isNewWord2 = tmpWord.Split(Punctuation.Space)[SecondElement];
           isNewWord2 = Helper.RemoveFirstCharacterIfNeeded(isNewWord2);
         }
 
@@ -512,7 +507,7 @@ namespace CreateDictionary
       buttonClearSource.Enabled = textBoxSource.Text != string.Empty;
       if (textBoxSource.Text != string.Empty)
       {
-        labelCountSourceWords.Text = $"Number of words: {textBoxSource.Text.Split(space).Count()}";
+        labelCountSourceWords.Text = $"Number of words: {textBoxSource.Text.Split(Punctuation.Space).Count()}";
       }
       else
       {
