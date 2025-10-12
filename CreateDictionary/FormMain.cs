@@ -157,7 +157,6 @@ namespace CreateDictionary
     private void ButtonLoad_Click(object sender, EventArgs e)
     {
       listBoxGeneralDico.Items.Clear();
-      //listBoxGeneralDico.Items.AddRange(ReadFile("Dictionaries\\French.txt"));
       var allWords = Helper.ReadFile("Dictionaries\\French.txt");
       foreach (string word in allWords)
       {
